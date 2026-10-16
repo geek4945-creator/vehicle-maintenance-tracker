@@ -1,0 +1,7 @@
+{
+  "appId": "com.jdstowing.vehicletracker",
+  "appName": "Vehicle Tracker",
+  "webDir": "www",
+  "server": { "androidScheme": "https" },
+  "android": { "allowMixedContent": false }
+}
