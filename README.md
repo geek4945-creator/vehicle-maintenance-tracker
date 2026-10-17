@@ -1,7 +1,7 @@
 # Vehicle Maintenance Tracker (JD's Towing)
 
 **Live web app:** https://geek4945-creator.github.io/vehicle-maintenance-tracker/  
-**Android APK:** see the [v1.0.0 release](https://github.com/geek4945-creator/vehicle-maintenance-tracker/releases/tag/v1.0.0)
+**Android APK:** see the [latest release](https://github.com/geek4945-creator/vehicle-maintenance-tracker/releases/latest)
 
 One responsive web app (PWA) that works as a normal website **and** installs on Android, plus an optional Android APK built from the same code with Capacitor. No server, no account, no CDN: all data lives on the device (IndexedDB) and the app works offline.
 
@@ -28,6 +28,8 @@ One responsive web app (PWA) that works as a normal website **and** installs on 
 2. When Android asks, allow your browser/Files app to **install unknown apps** (Settings → Apps → Special access → Install unknown apps), then tap **Install**.
 3. Open **Vehicle Tracker**. Excel/CSV/backup files open Android's **share sheet** (save to Drive, Files, email…).
 The APK is signed with a private key created on the build machine (`/workspace/vehicle-tracker-keystore/`, **not** inside the zip). Keep that key: future versions only install over this one if signed with the same key. Play Protect may show an "unverified developer" warning for sideloaded apps; that is normal.
+
+**Updating the APK:** open the ⚙ Settings screen → **App updates → Check for updates**. The app checks this repo's latest GitHub release (also once a day when opened), downloads the APK and opens Android's installer. The first time, allow *Install unknown apps* for Vehicle Tracker. Your data is kept.
 
 ## Use on the web / desktop
 Open `index.html` through any web server (service workers and IndexedDB do not work from `file://`). Data is per browser profile and per site address.

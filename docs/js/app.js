@@ -2,12 +2,13 @@
 (function () {
   'use strict';
   const C = window.Core;
-  const APP_VERSION = '1.0.0';
+  const APP_VERSION = '1.0.1';
   const S = {
     db: null, data: { vehicles: [], services: [], expenses: [], reminders: [], settings: Object.assign({}, C.DEFAULT_SETTINGS) },
     view: 'home', param: null,
     filter: { vehicleId: '', from: '', to: '', category: '', preset: 'all' }
   };
+  const UPDATE_CFG = { repo: 'geek4945-creator/vehicle-maintenance-tracker', asset: 'vehicle-tracker.*\\.apk', btnClass: 'btn block' };
   const $app = document.getElementById('app');
   const $title = document.getElementById('title');
 
@@ -620,6 +621,7 @@
       h('button', { class: 'btn block', onclick: () => backupExport(photos.checked) }, '⬇ Export backup (JSON)'),
       h('div', { style: 'height:12px' }),
       field('Restore from a backup file', file),
+      window.JDUpdater && JDUpdater.section(UPDATE_CFG),
       h('h2', null, 'Danger zone'),
       h('button', { class: 'btn danger block', onclick: eraseAll }, 'Erase all data on this device'),
       h('p', { class: 'muted small' }, 'Vehicle Tracker v' + APP_VERSION + ' · storage: ' + (S.db.kind === 'indexeddb' ? 'IndexedDB' : 'localStorage (fallback)') + ' · works offline'),
@@ -663,6 +665,7 @@
     try { S.db = await DB.init(); await reloadAll(); } catch (e) { $app.replaceChildren(h('div', { class: 'banner' }, 'Storage is not available in this browser: ' + e.message)); return; }
     if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
     route();
+    if (window.JDUpdater) JDUpdater.autoCheck(UPDATE_CFG, (r) => toast('Update ' + r.version + ' available – Settings → App updates'));
     if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch((e) => console.warn('SW', e));
     window.__vt = { S, C, go, route }; // handy for debugging / automated UI tests
   }

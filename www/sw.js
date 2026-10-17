@@ -1,6 +1,6 @@
 // Offline shell. Bump VERSION whenever files change so installed copies refresh.
-const VERSION = 'vt-v1';
-const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'css/app.css', 'js/core.js', 'js/xlsx.js', 'js/db.js', 'js/app.js',
+const VERSION = 'vt-v2';
+const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'css/app.css', 'js/core.js', 'js/xlsx.js', 'js/db.js', 'js/updater.js', 'js/app.js',
   'vendor/exceljs.min.js', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png', 'icons/apple-touch-icon.png'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => {
